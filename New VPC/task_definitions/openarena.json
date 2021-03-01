@@ -1,0 +1,26 @@
+[
+  {
+    "essential": true,
+    "name": "openarena",
+    "cpu": 512,
+    "memory": 1024,
+    "image": "docker.io/sago007/openarena",
+    "portMappings": [
+      {
+        "containerPort": 27960,
+        "hostPort": 27960,
+        "protocol": "udp"
+      }
+  ],
+  "environment": [
+    {
+      "name": "OA_PORT",
+      "value": "27960"
+    },
+    {
+      "name": "OA_STARTMAP",
+      "value": "dm4ish"
+    }
+  ]
+  }
+]
