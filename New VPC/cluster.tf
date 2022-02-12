@@ -3,12 +3,12 @@ resource "aws_ecs_cluster" "openarena_cluster" {
 }
 
 resource "aws_ecs_task_definition" "openarena_task_def" {
-    network_mode             = "awsvpc"
-    requires_compatibilities = ["FARGATE"]
-    cpu                      = 512    
-    memory                   = 1024
-    family                = "openarena"
-    container_definitions = file("task_definitions/openarena.json")
+    network_mode              = "awsvpc"
+    requires_compatibilities  = ["FARGATE"]
+    cpu                       = 512    
+    memory                    = 1024
+    family                    = "openarena"
+    container_definitions     = file("task_definitions/openarena.json")
 }
 
 resource "aws_ecs_service" "openarena_game" {
@@ -30,9 +30,9 @@ resource "aws_ecs_service" "openarena_game" {
  }
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.openarena_tg.arn
-    container_name = aws_ecs_task_definition.openarena_task_def.family
-    container_port = 27960
+    target_group_arn  = aws_alb_target_group.openarena_tg.arn
+    container_name    = aws_ecs_task_definition.openarena_task_def.family
+    container_port    = 27960
   }
   depends_on = [aws_alb_listener.openarena_listener]
 
